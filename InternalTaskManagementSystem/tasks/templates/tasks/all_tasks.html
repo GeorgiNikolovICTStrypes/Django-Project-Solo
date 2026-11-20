@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %} 
+<link rel = "stylesheet" href = "{% static 'tasks/tasks.css' %}">
+{% endblock css %}
+{% block title %} All Tasks {% endblock title %}
+{% block assigneefilter%}
+ {% if request.resolver_match.url_name == 'all_tasks' %}
+    <label>Assignee
+        <select name = "assignee" class = 'fancy-btn'>
+            <option value = "">Anyone</option>
+            {% for user in users %}
+            <p> {{user}}</p>
+                <option value = "{{user.pk}}">{{user.username}}</option>
+            {% endfor %}
+        </select>
+    </label>
+    {% endif %}
+{% endblock assigneefilter %}
+{% block body %}
+
+    {% for task in object_list %}
+       <p>{{task.title}}</p>
+       <p>{{task.status|title}}</p>
+       <p>{{task.priority|title}}</p>
+       <p>{{task.description}}</p>     
+       <p>{{task.deadline}}</p>
+       <hr>
+    {% endfor %}   
+    
+{% endblock body %}

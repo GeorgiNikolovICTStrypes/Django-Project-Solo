@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %} 
+    <link rel = "stylesheet" href = "{% static 'accounts/register.css' %}">
+{% endblock css %}
+{% block title %} Log in {% endblock title %}
+
+{% block body %}
+    <h1>HELLO THIS IS A LOGIN</h1>
+    <form method="POST" action = "">    
+        {% csrf_token %}
+        {{form}}
+    <button type = "submit" class = 'fancy-btn'>Log in</button>
+    </form>
+    <a href="/accounts/password_reset/" class = 'redirect_links'>Forgot your password?</a>
+{% endblock body %}

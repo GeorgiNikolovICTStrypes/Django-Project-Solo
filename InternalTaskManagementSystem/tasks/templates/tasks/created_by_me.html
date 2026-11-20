@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %} 
+<link rel = "stylesheet" href = "{% static 'tasks/tasks.css' %}">
+{% endblock css %}
+{% block title %} My tasks {% endblock title %}
+
+{% block body %}
+    <h1>Number of tasks created by me: {{object_list | length}}</h1>
+    {% for task in object_list %}
+       <p>{{task.title}}</p>
+       <p>{{task.status|title}}</p>
+       <p>{{task.priority|title}}</p>
+       <p>{{task.description}}</p>     
+       <p>{{task.deadline}}</p>
+    {% endfor %}   
+    
+{% endblock body %}

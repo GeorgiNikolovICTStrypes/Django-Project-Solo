@@ -1,0 +1,191 @@
+*
+{
+    background-color: #102882;
+}
+
+nav
+{
+    border-bottom: 1px solid #525252;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+}
+
+nav ul
+{
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+}
+
+nav a, details
+{
+    text-decoration: none;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 600;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.logout 
+{
+    margin-left: 30%;
+}
+
+.logout-btn
+{
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+p,h1
+{
+    color: white;
+}
+
+.menu
+{
+    position:relative;
+}
+.menu summary
+{
+    list-style: none;
+    cursor: pointer;
+}
+.menu summary::-webkit-details-marker
+{
+    display:none
+}
+.menu-list 
+{
+    position: absolute;
+    right: -60px;
+    top:100%;
+    list-style: none;
+    display:flex;
+    flex-direction: column;
+    gap:10px;
+    width:200px;
+}
+
+.fancy-btn {
+    padding: 14px 28px;
+    border: 1px solid #525252;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #4b5563, #6b7280);
+    color: #f9fafb;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    margin-top: 20px;
+}
+
+.fancy-btn:hover {
+    background: linear-gradient(135deg, #5b6472, #7b8390);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
+}
+
+.fancy-btn:active {
+    transform: translateY(1px);
+}
+
+.fancy-btn:focus {
+    outline: 3px solid rgba(156, 163, 175, 0.4);
+    outline-offset: 3px;
+}
+
+.styled-input{
+    background-color: #7b8390;
+    color: #f9fafb;
+    border:none;
+    border-radius: 12px;
+    padding: 10px 15px;
+    font-size: 16px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    width: 20%
+}
+/* all forms that have a help text set the help text class to be equal to .helptext */
+.helptext{
+    color: #ffeb3b;
+    font-size: 0.9rem;
+    display: block;
+    margin-top: 4px;
+    margin-bottom: 12px;
+}
+
+label{
+    color:#d9c406;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display:block;
+    font-size:20px;
+    font-weight: 600;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+
+
+form ul {
+    color: #ffeb3b;
+    font-size: 0.9rem;
+    padding-left: 20px;
+}
+
+
+
+p, h1{
+    color: white;
+}
+
+.redirect_links{
+    color: white;
+    text-decoration: underline;
+}
+
+.delete_links
+{
+    color:rgb(187, 4, 4);
+    text-decoration: underline;
+}
+
+.search-bar
+{
+    
+    color: #f9fafb;
+    border-radius: 12px;
+    padding: 10px 15px;
+    font-size: 16px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    width: 70%
+}
+
+.search-btn
+{
+    border-radius: 12px;
+    height:37.5px;
+    
+    margin-top: 5px;
+    margin-bottom: 10px;
+    width: 30%;
+    text-align: center;
+    margin-left:5px;
+}
+
+.search-form
+{
+    display:flex;
+    align-items: center;
+}

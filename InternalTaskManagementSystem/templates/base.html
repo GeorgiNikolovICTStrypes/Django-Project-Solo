@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{%  block title %} {%endblock title%}</title>
+
+    {%block css%} {%endblock css%}
+    <link rel="stylesheet" href="{% static '/base.css' %}">
+    <link> 
+</head>
+<body>
+    <nav>
+        <ul>
+            {% if user.is_authenticated %}
+            <li><a href="/tasks/dashboard">Home</a></li>
+            <li><a href="/tasks/created_by_me/">Created by me</a></li>
+            <li><a href = "/tasks/create_task/">Create a task</a></li>
+            <li><a href = '/tasks/all_tasks/'>View all tasks</a></li>
+            {% block search %}
+            {% endblock search %}
+            <li class = 'logout'>
+                <details class = "menu">
+                    <summary>{{user.username}}</summary>
+                    <ul class = 'menu-list'>
+                        <li><a href = "{% url 'view_profile' user.id %}">View Profile</a></li>
+                        <li><a href = "{% url 'edit_profile' user.id %}">Edit Profile</a></li>
+                        <li><a href = "{% url 'delete_profile' user.id %}">Delete Profile</a></li>
+                        <li>
+                            <form method = 'POST' action = "{% url 'logout' %}">
+                                {% csrf_token %}
+                                <button type = 'submit' class = 'logout-btn'>Log Out</button>
+                            </form>
+                        </li>
+                    </ul>
+                </details>      
+            </li>
+            {% else  %}
+            <li><a href="/accounts/register/">Register</a></li>
+            <li><a href = '/accounts/log_in/'> Log In</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    <main>
+{% if request.resolver_match.url_name == 'dashboard' or request.resolver_match.url_name == 'all_tasks' %}
+<details>    
+<summary>Filter by</summary>
+<form>
+<details>
+    <summary>Status</summary>
+    <label><input type = 'radio' name = 'status' value = "">Any</label>
+    <label><input type = 'radio' name = 'status' value = "to do">To Do</label>
+    <label><input type = 'radio' name = 'status' value = "in progress">In Progress</label>
+    <label><input type = 'radio' name = 'status' value = "completed">Completed</label>
+</details>
+
+<details>
+    <summary>Priority</summary>
+    <label><input type = 'radio' name = 'priority' value = "">Any</label>
+    <label><input type = 'radio' name = 'priority' value = "low">Low</label>
+    <label><input type = 'radio' name = 'priority' value = "medium">Medium</label>
+    <label><input type = 'radio' name = 'priority' value = "high">High</label>
+   
+</details>
+    {% block assigneefilter %}
+    {% endblock assigneefilter %}
+    <button type = 'submit' class = 'fancy-btn'>Apply Filters</button>
+    </form>
+</details>
+{% endif %}
+        {% block body %}
+        {% endblock body %}
+    </main>
+</body>
+</html>

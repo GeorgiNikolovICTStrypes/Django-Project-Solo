@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %} 
+{% endblock css %}
+{% block title %} Edit Task {% endblock title %}
+
+{% block body %}
+    <h1>Create a new task</h1>
+    <form method="POST">    
+        {% csrf_token %}
+        {%if user.id == object.created_by.id %}
+            {{form}}
+        {% else %}
+            <p>{{object.title}}</p>
+            <p>{{object.description}}</p>
+            <p>{{object.deadline}}</p>
+            {{form}}
+        {% endif %}
+        
+    <button type = "submit" class = 'fancy-btn'>Confirm Changes</button>
+    </form>
+{% endblock body %}

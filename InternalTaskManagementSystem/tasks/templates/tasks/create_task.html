@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %} 
+{% endblock css %}
+{% block title %} Create Task {% endblock title %}
+
+{% block body %}
+    <h1>Create a new task</h1>
+    <form method="POST" action = "">    
+        {% csrf_token %}
+        {{form}}
+    <button type = "submit" class = 'fancy-btn'>Create</button>
+    </form>
+{% endblock body %}

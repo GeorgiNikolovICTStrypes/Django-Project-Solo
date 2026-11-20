@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %} 
+   
+{% endblock css %}
+{% block title %} Task - {{object.title}} {% endblock title %}
+
+{% block body %}
+    <p>{{object.title}}</p>
+    <p>{{object.priority}}</p>
+    <p>{{object.status}}</p>
+    <p>{{object.description}}</p>
+    <p>{{object.deadline}}</p>
+   
+    <a href = '{% url "edit_task" object.id %}' class = "redirect_links">Edit Task</a>
+    <a href = '{% url "delete_task" object.id %}' class = 'delete_links'>Delete Task</a>
+
+    <h1>Notes by the asignee ({{object.assigned_to}}): </h1>
+    <form method = 'POST'>
+        {% csrf_token %}
+        {{notes_form}}
+    <button type = 'submit' class = 'fancy-btn'>Submit Note</button>
+    </form>
+    <h1>Notes ({{notes | length}}): </h1>
+    {% for note in notes %}
+        <p> {{note.by_user}} - {{note.contents}} </p>
+        <p>{{note.created_at}}</p>
+    {% endfor %}
+{% endblock body %}

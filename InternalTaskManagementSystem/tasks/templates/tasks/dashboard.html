@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %} 
+<link rel = "stylesheet" href = "{% static 'tasks/tasks.css' %}">
+{% endblock css %}
+
+{% block title %} Dashboard {% endblock title %}
+
+{% block search %}
+<li>
+                <form action = '{%url "dashboard" %}' class = 'search-form'>
+                    <input type = 'text' placeholder="Search" name = 'query' class = 'search-bar'>
+                    <button class = 'search-btn'>🔍</button>
+                </form>
+            </li>
+{% endblock search %}
+
+{% block body %}
+    <h1>Welcome, {{user.username}}. You have {{object_list | length}} tasks.</h1>
+
+    <div class = 'task-grid'>
+        {% for task in object_list %}
+        <div class = 'task-container'>
+            <header>
+                <h3 class = 'task-title'>{{task.title}}</h3>
+                <span class = 'status-class{{task.status|slugify}}'>{{task.status|title}}</span>
+                <span class = 'priority-class{{task.priority|slugify}}'>{{task.priority|title}}</span>
+            </header>
+            <p>{{task.description | truncatechars:40}}
+                <a href = '{% url "view_task" task.id %}' class = 'redirect_links'>Details</a>
+            </p>
+            
+            <p>{{task.deadline}}</p>
+            <footer>
+                <span class = "created-by">Created By: {{task.created_by.username}}</span>
+            </footer>
+        </div>
+        {% endfor %}
+    </div>
+    <h2 class = 'overdue-title'>Overdue Tasks: {{overdue_tasks | length}}</h2>
+    <div class = 'task-grid'>
+        {% for task in overdue_tasks %}
+        <div class = 'overdue-task-container '>
+            <header>
+                <h3 class = 'task-title'>{{task.title}}</h3>
+                <span class = 'status-class{{task.status|slugify}}'>{{task.status|title}}</span>
+                <span class = 'priority-class{{task.priority|slugify}}'>{{task.priority|title}}</span>
+            </header>
+            <p>{{task.description | truncatechars:40}}
+                <a href = '{% url "view_task" task.id %}' class = 'redirect_links'>Details</a>
+            </p>
+            
+            <p>{{task.deadline}}</p>
+            <footer>
+                <span class = "created-by">Created By: {{task.created_by.username}}</span>
+                
+            </footer>
+        </div>
+        {% endfor %}
+    </div>
+    
+    <div>
+        <p>Task Count</p>
+        <p>To Do: {{to_do_count}}</p>
+        <p>In Progress: {{in_progress_count}}</p>
+        <p>Completed: {{completed_count}}</p>
+    </div>
+{% endblock body %}
