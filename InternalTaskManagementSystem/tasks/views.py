@@ -233,7 +233,7 @@ class UpdateTaskView(UpdateView):
         """
         task = super().get_object(queryset)
         if self.request.user.id not in (task.created_by.id, task.assigned_to.id):
-             return HttpResponseForbidden
+             raise PermissionDenied
         return task
     
     def get_form_class(self):
@@ -294,7 +294,7 @@ class AllTasksView(ListView):
           if assignee:
                tasks = tasks.filter(assigned_to =assignee)
           return tasks
-        
+
      def dispatch(self, request, *args, **kwargs):
           """
           Args:

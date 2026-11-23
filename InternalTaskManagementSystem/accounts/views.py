@@ -1,5 +1,7 @@
-from django.shortcuts import render
-
+'''
+All of the views for the accounts application are defined here
+All of the views are class based.
+'''
 from django.views.generic import CreateView
 from django.contrib.auth.views import LoginView, PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
 from django.contrib.auth.views import PasswordChangeView, PasswordChangeDoneView
